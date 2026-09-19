@@ -183,6 +183,9 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
 @media (max-width:980px){.grid-3{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){.grid-3{grid-template-columns:1fr}}
+.grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:860px; margin-inline:auto}
+@media (max-width:700px){.grid-2{grid-template-columns:1fr}}
+.store-note{text-align:center; color:var(--muted); font-size:.92rem; font-weight:600; margin-top:28px}
 .card{background:var(--surface); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:16px; padding:20px 20px 22px; box-shadow:var(--shadow); transition:transform .3s ease, box-shadow .3s ease}
 .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-lg)}
 .card .ic{width:38px; height:38px; border-radius:11px; background:color-mix(in srgb, var(--slate) 10%, transparent); color:var(--slate); display:grid; place-items:center; margin-bottom:13px}
@@ -574,6 +577,30 @@ footer{background:var(--bg-soft); border-top:1px solid var(--border); padding:64
   </section>
 
 
+
+  <!-- ============ PLAY STORE NOTE ============ -->
+  <section class="section soft" id="playstore">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="kicker">Honest note</span>
+        <h2 class="title">Why isn&rsquo;t it on the Play Store yet?</h2>
+        <p class="lead">One simple reason, told straight: Google&rsquo;s one-time developer fee is $25, and I don&rsquo;t have it today.</p>
+      </div>
+      <div class="grid-2">
+        <article class="card reveal">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.4"/><path d="M12 7.2v9.6M14.4 9.3c-.5-.7-1.4-1.1-2.4-1.1-1.4 0-2.5.8-2.5 1.9 0 1.2 1.1 1.6 2.5 1.9s2.5.7 2.5 1.9c0 1.1-1.1 1.9-2.5 1.9-1 0-1.9-.4-2.4-1.1"/></svg></span>
+          <h3>The reason: $25</h3>
+          <p>Publishing on the Play Store costs a one-time $25 developer registration. NO Wallet is a one-person project with no funding, no ads and no investors, so that fee isn&rsquo;t paid yet.</p>
+        </article>
+        <article class="card reveal" style="--d:.06s">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.8 8h12.4l-1.1 12H6.9z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></span>
+          <h3>The promise</h3>
+          <p>The day I can pay it, NO Wallet goes live on the Play Store too, and every Download button on this site will switch to the store listing. Until then, the buttons here get you the app directly.</p>
+        </article>
+      </div>
+      <p class="store-note reveal">No ads. No investors. No shortcuts. Just an app that stays yours.</p>
+    </div>
+  </section>
 
   <!-- ============ FINAL CTA ============ -->
   <section class="section" id="cta">
