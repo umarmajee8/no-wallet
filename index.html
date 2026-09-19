@@ -26,24 +26,14 @@
 <meta name="twitter:title" content="E Wallet: All your cards. One tidy wallet.">
 <meta name="twitter:description" content="Keep your ID, licence, student card and bank cards in one place. Private, encrypted and always with you.">
 <meta name="twitter:image" content="assets/og-cover.jpg">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='15'%20fill='%2339404d'/%3E%3Cpath%20d='M12%2024c6-3%2011%203%2020%203s14-6%2020-3v16a7%207%200%200%201-7%207H19a7%207%200%200%201-7-7z'%20fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <script>
-/* Apply saved theme + language before first paint (no flash). */
-(function () {
-  document.documentElement.classList.add('js');
-  var t = null;
-  try { t = localStorage.getItem('wallet-theme'); } catch (e) {}
-  if (t !== 'light' && t !== 'dark') {
-    t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-  document.documentElement.setAttribute('data-theme', t);
-})();
+(function () { document.documentElement.classList.add('js'); })();
 </script>
 <style>
 /* ============ tokens ============ */
@@ -55,12 +45,6 @@
   --shadow:0 10px 30px rgba(16,20,26,.08); --shadow-lg:0 24px 60px rgba(16,20,26,.14);
   --radius:20px; --nav-h:68px; --spotlight:rgba(57,64,77,.14);
   --font:'SF Compact','SF Compact Text',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-}
-[data-theme="dark"]{
-  --bg:#0e1116; --bg-soft:#151a21; --surface:rgba(21,26,33,.66);
-  --text:#f2f4f7; --muted:#9aa3af; --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.18);
-  --btn-bg:#f2f4f7; --btn-text:#101318;
-  --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5); --spotlight:rgba(255,255,255,.07);
 }
 /* ============ base ============ */
 *,*::before,*::after{box-sizing:border-box}
@@ -113,21 +97,9 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .nav-actions{display:flex; align-items:center; gap:8px}
 .icon-btn{width:40px; height:40px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--border); background:var(--surface); transition:transform .2s, background .2s}
 .icon-btn:hover{transform:translateY(-1px)}
-[data-theme="light"] .icon-sun{display:none}
-[data-theme="dark"] .icon-moon{display:none}
-.burger{display:none}
 @media (max-width:920px){
   .nav-links{display:none}
-  .burger{display:grid}
 }
-@media (max-width:420px){
-  .nav-cta{display:none}
-}
-.mobile-menu{position:fixed; z-index:99; top:calc(var(--nav-h) + 8px); inset-inline:16px; background:var(--surface); -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px); border:1px solid var(--border); border-radius:20px; box-shadow:var(--shadow-lg); padding:10px; opacity:0; visibility:hidden; transform:translateY(-10px); transition:.28s ease}
-.mobile-menu.open{opacity:1; visibility:visible; transform:none}
-.mobile-menu a{display:block; padding:13px 16px; border-radius:12px; text-decoration:none; font-weight:600; color:var(--text)}
-.mobile-menu a:hover{background:var(--bg-soft)}
-.mobile-menu .btn{margin-top:8px; width:100%}
 /* ============ hero ============ */
 .hero{padding-top:calc(var(--nav-h) + 56px); padding-bottom:88px; overflow:hidden}
 .hero-inner{display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center}
@@ -190,7 +162,6 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .card:hover::after{opacity:1}
 .card .ic{width:38px; height:38px; border-radius:11px; background:color-mix(in srgb, var(--slate) 10%, transparent); color:var(--slate); display:grid; place-items:center; margin-bottom:13px}
 .card .ic svg{width:19px; height:19px}
-[data-theme="dark"] .card .ic{background:rgba(255,255,255,.07); color:#cdd3dc}
 .card h3{font-size:1rem; font-weight:700; letter-spacing:-.01em}
 .card p{color:var(--muted); margin-top:7px; font-size:.88rem; line-height:1.55}
 /* ============ privacy ============ */
@@ -199,12 +170,10 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 @media (max-width:980px){.priv-grid{grid-template-columns:1fr; gap:44px}}
 .note{display:flex; gap:12px; margin-top:18px; padding:14px 16px; border-radius:16px; border:1px solid var(--border); background:var(--bg-soft); color:var(--muted); font-size:.95rem}
 .note svg{flex:none; margin-top:3px; color:var(--slate-3)}
-[data-theme="dark"] .note svg{color:#cdd3dc}
 .backup-panel{background:var(--surface); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:24px; padding:10px 22px 12px; box-shadow:var(--shadow)}
 .bp-item{display:flex; align-items:center; gap:14px; padding:17px 0; border-top:1px solid var(--border)}
 .bp-item:first-child{border-top:0}
 .bp-ic{width:38px; height:38px; flex:none; display:grid; place-items:center; border-radius:50%; background:color-mix(in srgb, var(--slate) 10%, transparent); color:var(--slate)}
-[data-theme="dark"] .bp-ic{background:rgba(255,255,255,.08); color:#cdd3dc}
 .bp-ic svg{width:18px; height:18px}
 .bp-item b{display:block; font-size:.97rem; font-weight:700}
 .bp-item div span{display:block; color:var(--muted); font-size:.86rem; margin-top:2px}
@@ -299,24 +268,10 @@ footer{background:var(--bg-soft); border-top:1px solid var(--border); padding:64
       <a href="#privacy">Privacy</a>
     </nav>
     <div class="nav-actions">
-      <button class="icon-btn" id="themeToggle" aria-label="Switch to dark theme">
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg>
-      </button>
       <a class="btn btn-primary btn-sm nav-cta" href="#" data-app-link>Download</a>
-      <button class="icon-btn burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
     </div>
   </div>
 </header>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#features">Features</a>
-  <a href="#how">How it works</a>
-  <a href="#privacy">Privacy</a>
-  <a href="#screenshots">Screenshots</a>
-  <a class="btn btn-primary" href="#" data-app-link>Download</a>
-</div>
 
 <main id="main">
   <!-- ============ HERO ============ -->
@@ -677,44 +632,11 @@ const APP_LINK = "https://github.com/umarmajee8/no-wallet/releases/download/v1.0
   var DECK_NAMES = ['National Identity Card', 'Student ID', 'Driving Licence', 'Debit Card'];
   var deckIndex = 0;
 
-  /* ---------- theme ---------- */
-  var themeBtn = document.getElementById('themeToggle');
-  function setTheme(t, save) {
-    doc.setAttribute('data-theme', t);
-    themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-    if (save) { try { localStorage.setItem('wallet-theme', t); } catch (e) {} }
-  }
-  themeBtn.addEventListener('click', function () {
-    setTheme(doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
-  });
-  if (window.matchMedia) {
-    var mm = matchMedia('(prefers-color-scheme: dark)');
-    var onScheme = function (e) {
-      var saved = null; try { saved = localStorage.getItem('wallet-theme'); } catch (err) {}
-      if (!saved) setTheme(e.matches ? 'dark' : 'light', false);
-    };
-    if (mm.addEventListener) mm.addEventListener('change', onScheme); else if (mm.addListener) mm.addListener(onScheme);
-  }
-
   /* ---------- navbar blur on scroll ---------- */
   var nav = document.getElementById('navbar');
   function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
-
-  /* ---------- mobile menu ---------- */
-  var burger = document.getElementById('burger');
-  var menu = document.getElementById('mobileMenu');
-  function closeMenu() { menu.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
-  burger.addEventListener('click', function () {
-    var open = menu.classList.toggle('open');
-    burger.setAttribute('aria-expanded', String(open));
-  });
-  menu.addEventListener('click', function (e) { if (e.target.closest('a')) closeMenu(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
-  document.addEventListener('click', function (e) {
-    if (menu.classList.contains('open') && !e.target.closest('#mobileMenu') && !e.target.closest('#burger')) closeMenu();
-  });
 
   /* ---------- 3D deck cycle ---------- */
   var slots = Array.prototype.slice.call(document.querySelectorAll('#deck .slot'));

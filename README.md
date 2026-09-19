@@ -39,7 +39,6 @@ The Open Graph image is `assets/og-cover.jpg`. Use an **absolute URL** for `og:i
 
 - Sticky blur navbar, hero with animated 3D card-deck phone mockup (pure CSS/SVG)
 - Features grid, screenshots carousel, backup & privacy, how-it-works, final CTA, footer
-- Light + dark mode (system aware, remembered)
 - Scroll-reveal animations with `prefers-reduced-motion` support
 - Accessible: semantic HTML, aria labels, keyboard nav, skip link
 - SEO: title, meta description, Open Graph, Twitter cards, JSON-LD
