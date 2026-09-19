@@ -201,8 +201,10 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .bp-ic{width:42px; height:42px; border-radius:12px; background:color-mix(in srgb, var(--slate) 10%, transparent); display:grid; place-items:center; color:var(--slate); flex:none}
 [data-theme="dark"] .bp-ic{background:rgba(255,255,255,.07); color:#cdd3dc}
 .bp-row b{display:block; font-size:.98rem}
-.bp-row span{color:var(--muted); font-size:.85rem}
-.chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+.bp-row span{display:block; color:var(--muted); font-size:.85rem; margin-top:2px}
+.chips{display:flex; flex-wrap:wrap; gap:10px}
+.bp-block{border:1px solid var(--border); border-radius:16px; background:var(--bg); padding:16px 18px}
+.bp-block b{display:block; font-size:.9rem; margin-bottom:12px}
 .chip{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); border-radius:999px; padding:8px 16px; font-size:.88rem; font-weight:600; background:var(--bg)}
 /* ============ steps ============ */
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; position:relative; counter-reset:step}
@@ -314,7 +316,7 @@ footer{background:var(--bg-soft); border-top:1px solid var(--border); padding:64
   <section class="hero" id="top">
     <div class="container hero-inner">
       <div class="reveal">
-        <span class="badge"><span>Free · Works offline · No account needed</span></span>
+        <span class="badge"><span>Free, works offline, no account needed</span></span>
         <h1>All your cards. One tidy wallet.</h1>
         <p class="sub">Keep your ID, licence, student card and bank cards in one place, private, encrypted and always with you.</p>
         <div class="hero-cta">
@@ -529,16 +531,18 @@ footer{background:var(--bg-soft); border-top:1px solid var(--border); padding:64
         <div class="bp-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14m0 0-5-5m5 5 5-5"/></svg></div>
         <div class="bp-row">
           <span class="bp-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8.5z"/><path d="M13.5 3v5.5H19"/><rect x="9.4" y="12.6" width="5.2" height="4.4" rx="1.2"/><path d="M10.6 12.6v-1a1.4 1.4 0 0 1 2.8 0v1"/></svg></span>
-          <div><b>backup.wallet · encrypted</b><span>One file, protected by a password only you know.</span></div>
+          <div><b>backup.wallet (encrypted)</b><span>One file, protected by a password only you know.</span></div>
         </div>
         <div class="bp-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v14m0 0-5-5m5 5 5-5"/></svg></div>
-        <b style="font-size:.9rem">Save it to</b>
-        <div class="chips">
+        <div class="bp-block">
+          <b>Save it to</b>
+          <div class="chips">
           <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17.5a4.5 4.5 0 1 1 .8-8.9 5.5 5.5 0 0 1 10.6 1.5 3.8 3.8 0 0 1-1 7.4z"/></svg>Drive</span>
           <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M12 12 3.5 7.5M12 12l8.5-4.5M12 12v9"/></svg>Files</span>
           <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c-4.7 0-8.5 3.4-8.5 7.6 0 2.2 1 4.1 2.7 5.5l-.7 3.4 3.5-1.6c.9.3 2 .4 3 .4 4.7 0 8.5-3.4 8.5-7.7S16.7 3.5 12 3.5z"/></svg>WhatsApp</span>
+          </div>
         </div>
-        <p style="color:var(--muted); font-size:.88rem; margin-top:16px">Restoring the file on a new phone brings every card back.</p>
+        <p style="color:var(--muted); font-size:.88rem; margin-top:18px">Restoring the file on a new phone brings every card back.</p>
       </div>
     </div>
   </section>
