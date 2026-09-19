@@ -1,8 +1,8 @@
-# NO Wallet
+# E Wallet
 
 All your cards. One tidy wallet.
 
-A single-file, production-ready landing page for the **NO Wallet** mobile app (a digital pouch for ID, licence, student and bank cards). The whole site lives in one HTML file with inline CSS + vanilla JS and embedded screenshots, so you can drop it on any static host.
+A single-file, production-ready landing page for the **E Wallet** mobile app (a digital pouch for ID, licence, student and bank cards). The whole site lives in one HTML file with inline CSS + vanilla JS and embedded screenshots, so you can drop it on any static host.
 
 ## Live preview
 
