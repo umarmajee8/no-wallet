@@ -53,14 +53,14 @@
   --slate:#39404d; --slate-2:#2b313c; --slate-3:#4b5261;
   --btn-bg:#171a1f; --btn-text:#ffffff;
   --shadow:0 10px 30px rgba(16,20,26,.08); --shadow-lg:0 24px 60px rgba(16,20,26,.14);
-  --radius:20px; --nav-h:68px;
+  --radius:20px; --nav-h:68px; --spotlight:rgba(57,64,77,.14);
   --font:'SF Compact','SF Compact Text',-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
 }
 [data-theme="dark"]{
   --bg:#0e1116; --bg-soft:#151a21; --surface:rgba(21,26,33,.66);
   --text:#f2f4f7; --muted:#9aa3af; --border:rgba(255,255,255,.09); --border-strong:rgba(255,255,255,.18);
   --btn-bg:#f2f4f7; --btn-text:#101318;
-  --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5);
+  --shadow:0 10px 30px rgba(0,0,0,.35); --shadow-lg:0 24px 60px rgba(0,0,0,.5); --spotlight:rgba(255,255,255,.07);
 }
 /* ============ base ============ */
 *,*::before,*::after{box-sizing:border-box}
@@ -102,6 +102,7 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .btn-lg{padding:17px 36px; font-size:1.08rem}
 /* ============ navbar ============ */
 #navbar{position:fixed; inset-inline:0; top:0; z-index:100; height:var(--nav-h); transition:background .3s ease, box-shadow .3s ease, backdrop-filter .3s ease}
+#navbar::after{content:""; position:absolute; inset-inline:0; bottom:0; height:2px; width:var(--progress,0%); background:var(--slate-3); opacity:.85}
 #navbar.scrolled{background:var(--surface); background:color-mix(in srgb, var(--bg) 72%, transparent); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); box-shadow:0 1px 0 var(--border), 0 8px 30px rgba(16,20,26,.06)}
 .nav-inner{height:var(--nav-h); display:flex; align-items:center; gap:18px}
 .logo{display:inline-flex; align-items:center; gap:10px; font-weight:800; font-size:1.15rem; letter-spacing:-.02em; text-decoration:none; margin-inline-end:auto}
@@ -144,7 +145,7 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .phone-pill .plus{width:30px; height:30px; border-radius:50%; background:#171a1f; display:grid; place-items:center}
 .phone-pill svg{display:block}
 .deck-zone{position:absolute; inset:0; display:grid; place-items:center}
-.deck{position:relative; width:100%; height:270px; perspective:900px; margin-top:26px}
+.deck{position:relative; width:100%; height:270px; perspective:900px; margin-top:26px; transition:transform .25s ease}
 .slot{position:absolute; left:50%; top:6px; width:230px; height:244px; margin-left:-115px; transition:transform .95s cubic-bezier(.22,.9,.26,1), opacity .6s ease, filter .6s ease; will-change:transform}
 .slot[data-pos="center"]{transform:translateX(0) translateY(0) scale(1); z-index:4; filter:none}
 .slot[data-pos="right"]{transform:translateX(72%) translateY(16px) scale(.8) rotate(7deg); z-index:3; filter:brightness(.94)}
@@ -182,8 +183,10 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:860px; margin-inline:auto}
 @media (max-width:700px){.grid-2{grid-template-columns:1fr}}
 .store-note{text-align:center; color:var(--muted); font-size:.92rem; font-weight:600; margin-top:28px}
-.card{background:var(--surface); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:16px; padding:20px 20px 22px; box-shadow:var(--shadow); transition:transform .3s ease, box-shadow .3s ease}
+.card{position:relative; background:var(--surface); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:16px; padding:20px 20px 22px; box-shadow:var(--shadow); transition:transform .3s ease, box-shadow .3s ease}
 .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-lg)}
+.card::after{content:""; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%), var(--spotlight), transparent 65%); opacity:0; transition:opacity .35s ease; pointer-events:none}
+.card:hover::after{opacity:1}
 .card .ic{width:38px; height:38px; border-radius:11px; background:color-mix(in srgb, var(--slate) 10%, transparent); color:var(--slate); display:grid; place-items:center; margin-bottom:13px}
 .card .ic svg{width:19px; height:19px}
 [data-theme="dark"] .card .ic{background:rgba(255,255,255,.07); color:#cdd3dc}
@@ -208,10 +211,8 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 .bp-block b{display:block; font-size:.9rem; margin-bottom:12px}
 .chip{display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); border-radius:999px; padding:8px 16px; font-size:.88rem; font-weight:600; background:var(--bg)}
 /* ============ steps ============ */
-.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; position:relative; counter-reset:step}
-.steps::before{content:""; position:absolute; top:33px; inset-inline:12%; height:2px; background:linear-gradient(90deg, transparent, var(--border-strong) 18%, var(--border-strong) 82%, transparent)}
-@media (max-width:860px){.steps{grid-template-columns:1fr}.steps::before{display:none}}
-.step{position:relative; text-align:center; padding:0 8px}
+.steps{display:flex; flex-direction:column; gap:22px}
+.step{position:sticky; top:calc(var(--nav-h) + 28px + var(--i,0)*18px); background:var(--bg); border:1px solid var(--border); border-radius:24px; padding:46px 28px 42px; text-align:center; box-shadow:var(--shadow)}
 .step .n{width:66px; height:66px; margin:0 auto; border-radius:50%; background:var(--btn-bg); color:var(--btn-text); display:grid; place-items:center; font-weight:800; font-size:1.25rem; position:relative; z-index:1; box-shadow:var(--shadow)}
 .step h3{margin-top:22px; font-size:1.12rem}
 .step p{color:var(--muted); margin-top:10px; font-size:.95rem; max-width:34ch; margin-inline:auto}
@@ -240,6 +241,8 @@ h2.title{font-size:clamp(1.7rem,3.6vw,2.6rem); margin-top:14px}
 /* ============ cta banner ============ */
 .cta-banner{position:relative; overflow:hidden; border-radius:32px; background:linear-gradient(135deg,#262b34,#3a4150 55%,#2b313c); color:#fff; padding:clamp(44px,7vw,84px); text-align:center; box-shadow:var(--shadow-lg)}
 .cta-banner::before{content:""; position:absolute; inset:0; background:radial-gradient(60% 90% at 50% -10%, rgba(255,255,255,.16), transparent 60%)}
+.cta-banner::after{content:""; position:absolute; top:-40%; bottom:-40%; width:34%; left:-60%; background:linear-gradient(100deg, transparent, rgba(255,255,255,.13), transparent); transform:skewX(-18deg); animation:sheen 7.5s ease-in-out 2.5s infinite; pointer-events:none}
+@keyframes sheen{0%{left:-60%}55%{left:125%}100%{left:125%}}
 .cta-banner > *{position:relative}
 .cta-banner h2{font-size:clamp(1.8rem,4vw,2.9rem); letter-spacing:-.03em}
 .cta-banner p{color:rgba(255,255,255,.72); margin-top:16px; font-size:1.05rem}
@@ -560,17 +563,17 @@ footer{background:var(--bg-soft); border-top:1px solid var(--border); padding:64
         <p class="lead">Three steps, no manual required.</p>
       </div>
       <div class="steps">
-        <div class="step reveal">
+        <div class="step reveal" style="--i:0">
           <span class="n">1</span>
           <h3>Add your cards</h3>
           <p>Snap a photo or pick one from your gallery. NO Wallet crops it into a tidy card.</p>
         </div>
-        <div class="step reveal" style="--d:.08s">
+        <div class="step reveal" style="--i:1;--d:.08s">
           <span class="n">2</span>
           <h3>Swipe and tap to open</h3>
           <p>Flip through the 3D deck and tap a card to see it full size.</p>
         </div>
-        <div class="step reveal" style="--d:.16s">
+        <div class="step reveal" style="--i:2;--d:.16s">
           <span class="n">3</span>
           <h3>Share or back up</h3>
           <p>Send it to WhatsApp, save it as an image, or keep an encrypted backup safe.</p>
@@ -794,6 +797,8 @@ const APP_LINK = "[APP_LINK]";
         el.style.transform = 'scale(' + (0.92 + 0.08 * e).toFixed(4) + ')';
         el.style.opacity = (0.35 + 0.65 * e).toFixed(3);
       });
+      var max = document.documentElement.scrollHeight - vh;
+      nav.style.setProperty('--progress', (max > 0 ? (y / max) * 100 : 0).toFixed(1) + '%');
     };
     var req = function () {
       if (!ticking) { ticking = true; requestAnimationFrame(frame); }
@@ -801,6 +806,39 @@ const APP_LINK = "[APP_LINK]";
     window.addEventListener('scroll', req, { passive: true });
     window.addEventListener('resize', req);
     frame();
+  }
+
+  /* ---------- pointer micro-interactions: spotlight, tilt, magnetic, deck tilt ---------- */
+  var finePointer = window.matchMedia && matchMedia('(pointer:fine)').matches;
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.card').forEach(function (c) {
+      c.addEventListener('mousemove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left).toFixed(0) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top).toFixed(0) + 'px');
+        var rx = (e.clientX - r.left) / r.width - .5;
+        var ry = (e.clientY - r.top) / r.height - .5;
+        c.style.transform = 'perspective(800px) rotateX(' + (ry * -5).toFixed(2) + 'deg) rotateY(' + (rx * 6).toFixed(2) + 'deg) translateY(-5px)';
+      });
+      c.addEventListener('mouseleave', function () { c.style.transform = ''; });
+    });
+    document.querySelectorAll('.btn-primary, .btn-light').forEach(function (b) {
+      b.addEventListener('mousemove', function (e) {
+        var r = b.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width / 2);
+        var dy = e.clientY - (r.top + r.height / 2);
+        b.style.transform = 'translate(' + (dx * .12).toFixed(1) + 'px,' + (dy * .18).toFixed(1) + 'px)';
+      });
+      b.addEventListener('mouseleave', function () { b.style.transform = ''; });
+    });
+    var deckEl = document.getElementById('deck');
+    phone.addEventListener('mousemove', function (e) {
+      var r = phone.getBoundingClientRect();
+      var rx = (e.clientX - r.left) / r.width - .5;
+      var ry = (e.clientY - r.top) / r.height - .5;
+      deckEl.style.transform = 'rotateX(' + (ry * -6).toFixed(2) + 'deg) rotateY(' + (rx * 8).toFixed(2) + 'deg)';
+    });
+    phone.addEventListener('mouseleave', function () { deckEl.style.transform = ''; });
   }
 
   /* ---------- faq accordion (single open) ---------- */
