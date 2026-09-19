@@ -768,9 +768,8 @@ const APP_LINK = "[APP_LINK]";
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- scroll-linked motion: hero fade, parallax drift, scale-in ---------- */
+  /* ---------- scroll-linked motion: parallax drift, scale-in ---------- */
   if (!reduceMotion) {
-    var heroInner = document.querySelector('.hero-inner');
     var pxEl = document.querySelector('[data-parallax]');
     var scEls = Array.prototype.slice.call(document.querySelectorAll('[data-scale]'));
     var ticking = false;
@@ -778,11 +777,6 @@ const APP_LINK = "[APP_LINK]";
       ticking = false;
       var vh = window.innerHeight;
       var y = window.scrollY;
-      if (heroInner) {
-        var f = Math.min(1, y / (vh * 0.8));
-        heroInner.style.opacity = String(1 - f * 0.85);
-        heroInner.style.transform = 'translateY(' + (f * -24).toFixed(1) + 'px)';
-      }
       if (pxEl) {
         var r = pxEl.getBoundingClientRect();
         var p = (r.top + r.height / 2 - vh / 2) / vh;
